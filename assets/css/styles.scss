@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+*::before, *::after {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --pink: #ff74a4;
+    --violet: #9f6ea3;
+    --light-back: #515c6f;
+    --white: #ffffff;
+    --dark-white: #cecaca;
+    --pink-shadow:#ffcbdd;
+    --light-shadow: rgba(0, 0, 0, .15);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 380px;
+    background: var(--white);
+    padding: 25px 30px;
+    box-shadow: 0px 6px 15px var(--light-shadow);
+    border-radius: 15px;
+
+    & i {
+        cursor: pointer;
+    }
+
+    & .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & i {
+            font-size: 30px;
+            color: var(--light-back);
+        }
+
+        & span {
+            font-size: 18px;
+            color: var(--light-back);
+        }
+    }
+
+    & .img-area {
+        height: 256px;
+        width: 100%;
+        overflow: hidden;
+        margin-top: 25px;
+        border-radius: 15px;
+        box-shadow: 0px 6px 12px var(--light-shadow);
+        
+        & img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    & .song-details {
+        text-align: center;
+        margin: 10px 0;
+
+        & .name {
+            font-size: 21px;
+        }
+
+        & .artist {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+    }
+
+    & .progress-area {
+        height: 6px;
+        width: 100%;
+        background: #f0f0f0;
+        border-radius: 50px;
+        cursor: pointer;
+
+        & .progress-bar {
+            position: relative;
+            height: inherit;
+            width: 0%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--pink) 0%, var(--violet) 100%);
+
+            &::before {
+                content: "";
+                position: absolute;
+                height: 12px;
+                width: 12px;
+                background: #000;
+                border-radius: inherit;
+                top: 50%;
+                right: -5px;
+                transform: translateY(-50%);
+                background: inherit;
+                opacity: 0;
+                transition: opacity .2s ease;
+            }
+        }
+
+        &:hover {
+            & .progress-bar {
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+
+        & .timer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2px;
+
+            & span {
+                font-size: 13px;
+                color: var(--light-back);
+            }
+        }
+    }
+
+    & .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 40px 0 5px 0;
+
+        & i {
+            font-size: 28px;
+            user-select: none;
+            background: linear-gradient(var(--pink) 0%, var(--violet) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            &:nth-child(2),
+            &:nth-child(4) {
+                font-size: 43px;
+            }
+        }
+
+        & #prev {
+            margin-right: -13px;
+        }
+
+        & #next {
+            margin-left: -13px;
+        }
+
+        & .play-pause {
+            height: 54px;
+            width: 54px;
+            line-height: 43px;
+            text-align: center;
+            background: linear-gradient(var(--white) 0%, var(--dark-white) 100%);
+            box-shadow: 0px 0px 5px var(--pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & i {
+                height: 43px;
+                width: 43px;
+                border-radius: inherit;
+                background: inherit;
+                position: relative;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            &::before {
+                content: '';
+                position: absolute;
+                border-radius: inherit;
+                height: 43px;
+                width: 43px;
+                background: linear-gradient(var(--pink) 0%, var(--violet) 100%);
+            }
+            & .icon-pause {
+                display: none;
+            }
+
+            &.paused .icon-pause {
+                display: inline-block;
+                height: 43px;
+                width: 43px;
+            }
+
+            &.paused .icon-play {
+                display: none;
+            }
+        }
+    }
+
+    & .music-list {
+        position: absolute;
+        left: 0;
+        bottom: -55%;
+        pointer-events: none;
+        opacity: 0;
+        width: 100%;
+        background: var(--white);
+        border-radius: 15px;
+        padding: 15px 30px;
+        box-shadow: 0px -5px 10px rgba(0, 0, 0, .1);
+        transition: all 0.14s ease-out;
+
+        &.show {
+            bottom: 0;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        & .header,
+        & li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        & .header {
+            & .row {
+                display: flex;
+                align-items: center;
+                font-size: 19px;
+                color: var(--light-back);
+
+                & i {
+                    cursor: default;
+                }
+
+                & span {
+                    margin-left: 5px;
+                }
+            }
+
+            & #close {
+                font-size: 22px;
+                color: var(--light-back);
+            }
+        }
+
+        & ul {
+            margin: 10px 0;
+            max-height: 260px;
+            overflow-y: auto;
+
+            
+            &::-webkit-scrollbar {
+                width: 0;
+            }
+            
+            & li {
+                cursor: pointer;
+                list-style: none;
+                padding-bottom: 10px;
+                margin-bottom: 5px;
+                border-bottom: 1px solid#e5e5e5;
+                
+                &.playing {
+                    color: var(--violet);
+                    pointer-events: none;
+                }
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                & .row {
+                    & span {
+                        font-size: 17px;
+
+                    }
+
+                    & p {
+                        opacity: 0.9;
+                    }
+                }
+
+                & .audio-duration {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

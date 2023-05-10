@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Music Player</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top-bar">
+            <i class="uil uil-angle-down"></i>
+            <span>Now Playing</span>
+            <i class="uil uil-ellipsis-h"></i>
+        </div>
+        <div class="img-area">
+            <img src="./assets/img/taylor_swift_2.png" alt="">
+        </div>
+        <div class="song-details">
+            <p class="name"></p>
+            <p class="artist"></p>
+        </div>
+        <div class="progress-area" >
+            <div class="progress-bar" >
+                
+            </div>
+            <div class="timer">
+                <span class="current">0:00</span>
+                <span class="duration">3:40</span>
+            </div>
+            <audio src="" id="main-audio"></audio>
+        </div>
+        <div class="controls">
+            <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
+            <i id="prev" class="uil uil-previous"></i>
+            <div class="play-pause">
+                <i class="uil uil-play icon-play"></i>
+                <i class="uil uil-pause icon-pause"></i>
+            </div>
+            <i id="next" class="uil uil-step-forward"></i>
+            <i id="more-music" class="uil uil-music"></i>
+        </div>
+        <div class="music-list">
+            <div class="header">
+                <div class="row">
+                    <i class="uil uil-music"></i>
+                    <span>Music List</span>
+                </div>
+                <i id="close" class="uil uil-times"></i>
+            </div>
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
+    <script src="./assets/js/list-music.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
